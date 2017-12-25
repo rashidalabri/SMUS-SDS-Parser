@@ -3,7 +3,7 @@
 A python library that parses the St. Michaels University School School Data System student panel
 
 #### Installation
-To install, clone this repository somehere on your system and then `import smusdsparser` in your project.
+To install, clone this repository somehere on your system and then `import smusdsparser` into your project.
 
 #### Usage
 The first step is creating a session. Currently, you cannot setup a session using your username and password ([view issue](https://github.com/rashidx/SMUS-SDS-Parser/issues/1)).
