@@ -1,19 +1,22 @@
 import smussdsparser
-import datetime
 
 # The session_id can be obtained by logging into SMUS SDS and using a chrome extension like EditThisCookie to find
 # the PHPSESSID cookie value.
-session_id = 'd59gobaahijptjm6rirp7dika5'
+session_id = 'aaaaaaaaaaaaaaaaaaaaaaaa'
 
 # The first step is creating our session
 my_session = smussdsparser.Session(session_id)
 
 # We create a student object by passing our session to the Student class
-my_account = smussdsparser.Student(my_session)
+try:
+    my_account = smussdsparser.Student(my_session)
+except smussdsparser.NotLoggedInException:
+    print('The session is not logged in.')
+    exit()
 
 # Student objects have many attributes including name and courses
 print('Welcome ' + my_account.name + '.')
-print('You are currently enrolled in ' + str(len(my_account.courses)) + 'courses.')
+print('You are currently enrolled in ' + str(len(my_account.courses)) + ' courses.')
 print('')
 
 for course in my_account.courses:

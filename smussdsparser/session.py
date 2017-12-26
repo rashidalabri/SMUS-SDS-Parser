@@ -1,5 +1,6 @@
 import requests
 import bs4
+from .notloggedinexception import NotLoggedInException
 
 
 class Session:
@@ -44,8 +45,16 @@ class Session:
         print(r.text)
         return cookie_jar
 
-    def get(self, url, params=None):
+    def is_logged_in(self):
+        r = self.get(self.BASE_URL, ignore_logged_in=True)
+        return 'You are:' in r.text
+
+    def get(self, url, params=None, ignore_logged_in=False):
+        if (not ignore_logged_in) and (not self.is_logged_in()):
+            raise NotLoggedInException
         return requests.get(url, params=params, cookies=self.cookie_jar)
 
-    def post(self, url, data=None, params=None):
+    def post(self, url, data=None, params=None, ignore_logged_in=False):
+        if (not ignore_logged_in) and (not self.is_logged_in()):
+            raise NotLoggedInException
         return requests.get(url, data=data, params=params, cookies=self.cookie_jar)
