@@ -53,7 +53,7 @@ class Student:
         while True:
             if 'course_summary.php' in r.text:
                 break
-            r = self.session.get(Session.RPC_URL, params=Session.RPC_PARAMS['my_courses'])
+            r = self.session.get(Session.RPC_URL, params=Session.RPC_PARAMS['student_menu'])
 
         page = bs4.BeautifulSoup(r.text, 'lxml')
         student_courses = []
